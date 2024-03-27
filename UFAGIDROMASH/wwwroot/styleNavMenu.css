@@ -1,0 +1,98 @@
+﻿/* Уберите высоту для html и body, чтобы страница занимала всю доступную высоту */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, sans-serif;
+}
+
+/* Цвет фона верхней панели */
+.top-row {
+    background-color: #323c44; /* Цвет фона верхней панели */
+}
+
+/* Установите высоту для .container на 100% */
+.container {
+    display: flex;
+    height: 100%;
+}
+
+/* Установите высоту для .nav-scrollable на 100% */
+.nav-scrollable {
+    height: 100%;
+}
+
+/* Цвет фона кнопки навигационного меню */
+.navbar-toggler {
+    background-color: #323c44; /* Цвет фона кнопки навигационного меню */
+}
+
+/* Изменения для чекбокса навигационного меню */
+.navbar-toggler {
+    appearance: none;
+    cursor: pointer;
+    width: 3.5rem;
+    height: 2.5rem;
+    color: white;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center/1.75rem rgba(255, 255, 255, 0.1);
+}
+
+    /* Изменения для чекбокса навигационного меню при активации */
+    .navbar-toggler:checked {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+/* Стили для ссылок в навигационном меню */
+.nav-item ::deep .nav-link {
+    color: white; /* Цвет текста ссылок в навигационном меню */
+    font-size: 20px; /* Размер шрифта ссылок в навигационном меню */
+    display: flex;
+    align-items: center;
+}
+
+/* Стили для активной ссылки в навигационном меню */
+.nav-item ::deep a.active {
+    background-color: rgba(255,255,255,0.37); /* Фон активной ссылки */
+    color: white; /* Цвет текста активной ссылки */
+}
+
+/* Стили для навигационного меню */
+.nav-item ::deep .nav-link:hover {
+    background-color: rgba(255,255,255,0.1); /* Фон при наведении на ссылку */
+    color: white; /* Цвет текста при наведении на ссылку */
+}
+
+/* Стили для иконок */
+.bi {
+    color: white; /* Цвет иконок */
+    font-size: 20px; /* Размер иконок */
+}
+
+/* Стили для футера */
+.footer {
+    background-color: #323c44; /* Цвет подвала */
+    color: white; /* Цвет текста в футере */
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+    /* Стили для текста в футере */
+    .footer p {
+        margin: 5px 0;
+    }
+
+    /* Стили для заголовка в футере */
+    .footer .header {
+        font-size: 20px; /* Размер шрифта заголовка в футере */
+        margin-bottom: 10px;
+    }
+
+/* Стили для контейнера с контентом */
+.content-container {
+    flex: 1;
+    padding: 20px;
+}

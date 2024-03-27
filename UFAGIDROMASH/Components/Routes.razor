@@ -1,0 +1,38 @@
+﻿@using UFAGIDROMASH.Components.Pages
+@using UFAGIDROMASH.Models
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        @if (loggedIn)
+        {
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+            <Route Path="/NavMenu" Component="@typeof(NavMenu)" />
+            <FocusOnNavigate RouteData="@routeData" Selector="main" />
+        }
+        else
+        {
+            <Authorization OnSuccessfulLogin="@HandleSuccessfulLogin" />
+        }
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@code {
+    private bool loggedIn = false;
+
+    private void HandleSuccessfulLogin()
+    {
+        loggedIn = true;
+        StateHasChanged();
+    }
+}
+
+
+

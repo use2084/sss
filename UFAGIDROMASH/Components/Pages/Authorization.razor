@@ -1,0 +1,129 @@
+﻿@page "/Authorization"
+@using UFAGIDROMASH.Models
+@inject IJSRuntime JSRuntime
+@inject HttpClient HttpClient
+@inject GidromashContext DbContext
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavigationManager
+@inject CsrfTokenService CsrfTokenService
+@inherits LayoutComponentBase
+
+
+
+<!DOCTYPE html>
+<div>@Body</div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="styleAuthorization.css">
+</head>
+<body>
+    <form>  
+        <div class="container">
+
+                <div class="authorization-form">
+                    <div class="logo-container">
+                        <img src="Logo.jpg" alt="УФАГИДРОМАШ Logo" class="logo">
+                        <h1 class="company-name">УФАГИДРОМАШ</h1>
+                    </div>
+                    <h2 class="title">Авторизация</h2>
+                    <div class="input-group">
+                        <input @bind="login" @bind:event="oninput" class="text-input" placeholder="Введите логин" /> 
+                    </div>
+                    <div class="input-group">
+                    <input @bind="password" @bind:event="oninput" class="text-input" placeholder="Введите пароль" />
+                    </div>
+                    <div class="button-container">
+                        <button type="submit" class="action-button">Войти</button><br>
+                    </div>
+                </div>
+        </div>
+     </form>
+    <footer class="footer">
+        <div class="footer-info">
+            <div class="info-left">
+                <p class="header">8 3476 343-576</p>
+                <p>Головной офис: <a href="#">Уфа, ул. Гоголя, 56</a></p>
+                <p>Производственная площадка: <a href="#">Салават, ул. Индустриальная, здание 7Г</a></p>
+                <p>Представители: <a href="#">Реквизиты представителей</a></p>
+            </div>
+            <div class="info-right">
+                <p>«Уфагидромаш» — ведущий производитель и поставщик гидравлических ключей серии ГКШ и спайдеров серии СПГ, а также запасных частей для импортных аналогов.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+@code {
+    public Company company = new();
+
+    // string? login { get; set; } 
+    // string password;
+    string message = "";
+    [Parameter]
+    public Action OnSuccessfulLogin { get; set; }
+    private EditContext _editContext;
+    private bool loggedIn = false;
+
+    public string login { get; set; }
+    public string password { get; set; }
+    
+    
+
+    protected override void OnInitialized()
+    {
+        _editContext = new EditContext(this);
+        // company = DbContext.Companies.FirstOrDefault(c => c.CompanyLogin == login);
+        // if (company != null)
+        // {
+        //     login = company.CompanyLogin;
+        //     password = company.CompanyPassword;
+        // }
+    }
+
+    private void LoginMethod()
+    {
+        
+        if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+        {
+            Console.WriteLine("Введите логин и пароль.");
+            return;
+        }
+
+        var companyDb = DbContext.Companies.FirstOrDefault(c => c.CompanyLogin == login && c.CompanyPassword == password);
+
+        if (companyDb != null)
+        {
+            Console.WriteLine("Успешный вход. Переход на страницу NavMenu.");
+
+            DateTime expirationTime = DateTime.UtcNow.AddSeconds(3600);
+            string expirationString = expirationTime.ToString("R");
+            login = companyDb.CompanyLogin;
+            password = companyDb.CompanyPassword;
+
+            loggedIn = true; // Устанавливаем loggedIn в true при успешной авторизации
+            StateHasChanged(); // Обновляем компонент, чтобы отобразить NavMenu
+            NavigationManager.NavigateTo("/NavMenu");
+        }
+        else
+        {
+            Console.WriteLine("Неверный логин или пароль.");
+        }
+    }
+
+
+    private async Task SubmitData()
+    {
+        // Ваша логика для отправки данных, если необходимо
+        var request = new HttpRequestMessage(HttpMethod.Post, "your-api-endpoint");
+
+        var token = CsrfTokenService.GetCsrfToken();
+        request.Headers.Add("RequestVerificationToken", token);
+
+        var response = await HttpClient.SendAsync(request);
+
+    }
+}

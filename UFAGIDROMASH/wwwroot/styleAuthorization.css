@@ -1,0 +1,136 @@
+﻿﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, sans-serif;
+    height: auto;
+}
+
+.container {
+    min-height: auto; /* Занимает всю видимую высоту экрана */
+    display: flex;
+    flex-direction: column;
+    /*overflow: hidden;*/
+    align-items: center; /*Центрирует содержимое по вертикали */
+    /*justify-content: center;*/ /* Центрирует содержимое по горизонтали */
+    margin-top: 100px; /* Расстояние по вертикали */
+}
+
+.footer {
+    background-color: #323c44; /* Цвет фона подвала */
+    color: white;
+    padding: 20px;
+    width: 100%; /* Ширина подвала равна ширине окна браузера */
+    text-align: center; /* Выравнивание текста по центру */
+    position: fixed; /* Фиксированное позиционирование */
+     /* Прикрепляет подвал к нижней части экрана */
+}
+
+    .footer p {
+        font-size: 16px;
+        font-family: Verdana, sans-serif;
+    }
+
+    .footer .header {
+        font-size: 20px;
+        font-family: Verdana, sans-serif;
+    }
+
+    .footer .info-left {
+        float: left;
+        width: 50%;
+    }
+
+    .footer .info-right {
+        float: right;
+        width: 50%;
+    }
+
+    .footer a {
+        color: blue;
+    }
+
+
+.authorization-form {
+    width: 450px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #323c44;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.company-name {
+    font-size: 26px;
+    font-weight: bold;
+    color: #323c44;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #323c44;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #323c44;
+}
+
+.text-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    border: 1px solid #323c44;
+    border-radius: 3px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.action-button {
+    width: 48%;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #323c44;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 600px) {
+    .authorization-form {
+        width: 90%;
+    }
+}

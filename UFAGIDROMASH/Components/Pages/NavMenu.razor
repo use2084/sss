@@ -1,0 +1,76 @@
+﻿@inject NavigationManager NavigationManager
+@page "/NavMenu"
+@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.WebUtilities
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главное меню</title>
+    <link rel="stylesheet" href="styleNavMenu.css">
+</head>
+<body>
+    <div class="top-row ps-3 navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">BlazorApp1</a>
+        </div>
+    </div>
+    <div class="nav-scrollable">
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Продукция
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Сервис
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="weather">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Корзина
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="logout">
+                    <span class="bi bi-box-arrow-right" aria-hidden="true"></span> Выход из аккаунта
+                </NavLink>
+            </div>
+        </nav>
+    </div>
+    <div>
+        <footer class="footer">
+            <div class="footer-info">
+                <div class="info-left">
+                    <p class="header">8 3476 343-576</p>
+                    <p>Головной офис: <a href="#">Уфа, ул. Гоголя, 56</a></p>
+                    <p>Производственная площадка: <a href="#">Салават, ул. Индустриальная, здание 7Г</a></p>
+                    <p>Представители: <a href="#">Реквизиты представителей</a></p>
+                </div>
+                <div class="info-right">
+                    <p>«Уфагидромаш» — ведущий производитель и поставщик гидравлических ключей серии ГКШ и спайдеров серии СПГ, а также запасных частей для импортных аналогов.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
+
+@code {
+    [Parameter]
+    public string Message { get; set; }
+
+    private async Task Logout()
+    {
+        NavigationManager.NavigateTo("/Authorization", true);
+        await Task.CompletedTask;
+    }
+}

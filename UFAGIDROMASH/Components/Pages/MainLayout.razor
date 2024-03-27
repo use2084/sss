@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+
+@if (!loggedIn)
+{
+    <div>
+        <Authorization OnSuccessfulLogin="@HandleSuccessfulLogin" />
+        @Body
+    </div>
+}
+else
+{
+    <div class="page">
+        <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+        <main>
+            <article class="content px-4">
+                <NavMenu />
+                @Body
+            </article>
+        </main>
+    </div>
+}
+
+@code {
+    private bool loggedIn = false;
+
+    private void HandleSuccessfulLogin()
+    {
+        loggedIn = true;
+        StateHasChanged();
+    }
+}
